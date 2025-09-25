@@ -7,11 +7,20 @@
 </head>
 <body>
 
+  <div id="unsupported-browser">
+    Seu navegador não suporta a API de Reconhecimento de Fala (SpeechRecognition). Para uma melhor experiência, recomendamos o uso do Google Chrome.
+  </div>
+
   <div class="words" contenteditable>
   </div>
 
 <script>
   window.SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+
+  if (!window.SpeechRecognition) {
+    document.getElementById('unsupported-browser').style.display = 'block';
+    document.querySelector('.words').style.display = 'none';
+  } 
 
   const recognition = new SpeechRecognition();
   recognition.interimResults = true;
@@ -78,6 +87,21 @@
       bottom: 0;
       border: 1px solid;
       border-color: transparent #efe4e4;
+    }
+
+    #unsupported-browser {
+      display: none; 
+      max-width: 500px;
+      margin: 50px auto;
+      background-color: #f8d7da; 
+      color: #721c24;
+      font-weight: 400;
+      font-size: 1.8rem;
+      font-family: sans-serif;
+      border-radius: 5px;
+      padding: 1rem 2rem;
+      position: relative;
+      line-height: 3rem;
     }
   </style>
 
