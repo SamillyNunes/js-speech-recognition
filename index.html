@@ -29,8 +29,9 @@
     p.textContent = transcript;
   });
 
+  recognition.addEventListener('end', ()=> recognition.start());
+  
   recognition.start();
-
 
 </script>
 
